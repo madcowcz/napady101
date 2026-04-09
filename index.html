@@ -4,9 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nápady 101 — Kreativní techniky</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
+    --bg: #f7c5be;
+    --surface: #f0b5ad;
+    --surface2: #e8a89f;
+    --border: #e09088;
+    --accent: #e8321e;
+    --accent2: #c41a08;
+    --text: #111111;
+    --muted: #7a3028;
+    --card-bg: #fad0c8;
+    --white: #ffffff;
+  }
     --bg: #0d0d0d;
     --surface: #161616;
     --border: #2a2a2a;
@@ -17,28 +28,28 @@
     --card-bg: #141414;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+  body { background: var(--bg); color: var(--text); font-family: 'Barlow', sans-serif; min-height: 100vh; }
 
   /* LOGIN */
   #login-screen {
     position: fixed; inset: 0; background: var(--bg);
-    display: flex; align-items: center; justify-content: center; z-index: 9999;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999;
   }
-  .login-box { width: min(420px, 92vw); text-align: center; }
+  .login-box { width: min(420px, 92vw); text-align: center; margin: 0 auto; }
   .login-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
-  .login-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 900; line-height: 1.05; margin-bottom: 6px; }
-  .login-title em { color: var(--accent); font-style: italic; }
+  .login-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 900; line-height: 1.05; margin-bottom: 6px; }
+  .login-title em { color: var(--accent); font-style: normal; font-weight: 900; }
   .login-sub { font-size: 13px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
   .login-input-wrap { margin-bottom: 14px; }
   .login-input-wrap input {
-    width: 100%; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px;
+    width: 100%; background: var(--white); border: 2px solid var(--border);
+    color: var(--text); font-family: 'Barlow', sans-serif; font-size: 15px;
     padding: 16px 20px; border-radius: 4px; outline: none; transition: border-color 0.2s; letter-spacing: 0.05em;
   }
   .login-input-wrap input:focus { border-color: var(--accent); }
   .login-btn {
-    width: 100%; background: var(--accent); color: #0d0d0d; border: none;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    width: 100%; max-width: 100%; background: var(--accent); color: #ffffff; border: none;
+    font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 500;
     letter-spacing: 0.15em; text-transform: uppercase; padding: 16px; border-radius: 4px;
     cursor: pointer; transition: opacity 0.2s;
   }
@@ -51,21 +62,21 @@
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(13,13,13,0.94); backdrop-filter: blur(12px);
+    background: rgba(247,197,190,0.97); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px;
   }
-  .nav-logo { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
+  .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 17px; font-weight: 700; }
   .nav-logo span { color: var(--accent); }
   .nav-tabs { display: flex; gap: 4px; }
   .nav-tab {
-    background: none; border: none; color: var(--muted);
-    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+    background: none; border: none; color: #7a3028;
+    font-family: 'Barlow', sans-serif; font-size: 12px; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px;
     border-radius: 3px; cursor: pointer; transition: color 0.2s, background 0.2s;
   }
-  .nav-tab:hover { color: var(--text); background: var(--surface); }
-  .nav-tab.active { color: var(--accent); background: rgba(232,197,71,0.08); }
+  .nav-tab:hover { color: var(--text); background: rgba(0,0,0,0.06); }
+  .nav-tab.active { color: var(--accent); background: rgba(232,50,30,0.1); font-weight:600; }
 
   /* HERO */
   .hero {
@@ -73,27 +84,27 @@
     display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
   }
   .hero-label { font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 20px; }
-  .hero-title em { font-style: italic; color: var(--accent); }
-  .hero-desc { font-size: 15px; color: #aaa; line-height: 1.7; font-weight: 300; }
+  .hero-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 20px; }
+  .hero-title em { font-style: normal; color: var(--accent); }
+  .hero-desc { font-size: 15px; color: #333; line-height: 1.7; font-weight: 400; }
   .hero-stats { display: flex; flex-direction: column; gap: 28px; }
-  .hero-stat { border-left: 2px solid var(--accent); padding-left: 20px; }
-  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; }
-  .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .hero-stat { border-left: 4px solid var(--accent); padding-left: 20px; }
+  .hero-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+  .hero-stat-label { font-size: 12px; color: #333; margin-top: 4px; font-weight: 500; }
 
-  .section-divider { height: 1px; background: var(--border); margin: 0 32px; }
+  .section-divider { height: 2px; background: var(--border); margin: 0 32px; }
 
   .section { padding: 64px 32px; max-width: 1100px; margin: 0 auto; }
   .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
-  .section-num { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--accent); letter-spacing: 0.1em; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+  .section-num { font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; color: var(--accent); letter-spacing: 0.1em; }
+  .section-title { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
 
   .fact-banner {
-    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    background: var(--accent); border: none; border-radius: 6px;
     padding: 32px 40px; margin-bottom: 48px;
     display: flex; gap: 40px; align-items: center; flex-wrap: wrap;
   }
-  .fact-quote { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-style: italic; flex: 1; min-width: 240px; line-height: 1.45; }
+  .fact-quote { font-family: 'Barlow Condensed', sans-serif; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-style: italic; flex: 1; min-width: 240px; line-height: 1.45; }
   .fact-source { font-size: 12px; color: var(--muted); white-space: nowrap; }
 
   /* TECHNIQUE / QUESTION ITEM — two-column card */
@@ -104,24 +115,24 @@
     border-radius: 8px;
     overflow: hidden;
     margin-bottom: 24px;
-    background: var(--card-bg);
+    background: var(--white);
     transition: border-color 0.25s;
   }
-  .item:hover { border-color: rgba(232,197,71,0.35); }
+  .item:hover { border-color: var(--accent); }
 
   .item-info {
     padding: 36px;
     display: flex; flex-direction: column; justify-content: center;
-    border-right: 1px solid var(--border);
+    border-right: 2px solid var(--border);
   }
   .item-num {
-    font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900;
-    color: rgba(232,197,71,0.1); line-height: 1; margin-bottom: 14px;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 3.5rem; font-weight: 900;
+    color: rgba(232,50,30,0.15); line-height: 1; margin-bottom: 14px;
   }
-  .item-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .item-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
-  .item-desc { font-size: 13.5px; color: #999; line-height: 1.7; font-weight: 300; }
-  .item-question { font-size: 13.5px; color: #aaa; line-height: 1.65; font-style: italic; font-weight: 300; }
+  .item-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; font-weight: 600; }
+  .item-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .item-desc { font-size: 13.5px; color: #333; line-height: 1.7; font-weight: 400; }
+  .item-question { font-size: 13.5px; color: var(--muted); line-height: 1.65; font-style: italic; font-weight: 300; }
 
   .item-example { background: #000; display: flex; flex-direction: column; }
 
@@ -130,24 +141,24 @@
 
   .example-caption {
     padding: 14px 18px;
-    background: var(--surface);
-    border-top: 1px solid var(--border);
+    background: #fff;
+    border-top: 2px solid var(--border);
     margin-top: auto;
   }
   .example-tag {
     display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.15em;
-    text-transform: uppercase; color: var(--accent); background: rgba(232,197,71,0.1);
+    text-transform: uppercase; color: #ffffff; background: var(--accent);
     padding: 2px 7px; border-radius: 2px; margin-bottom: 5px;
   }
-  .example-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
-  .example-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .example-title { font-size: 13px; font-weight: 600; color: #111; line-height: 1.4; }
+  .example-sub { font-size: 11px; color: #666; margin-top: 3px; }
 
   /* TAB */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
   /* FOOTER */
-  footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer { border-top: 2px solid var(--border); padding: 24px 32px; background: var(--accent); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
   .footer-text { font-size: 12px; color: var(--muted); }
   .footer-author { font-size: 12px; color: var(--muted); }
   .footer-author strong { color: var(--text); }
@@ -169,15 +180,15 @@
 <body>
 
 <!-- LOGIN -->
-<div id="login-screen">
-  <div class="login-box">
+<div id="login-screen" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+  <div style="width:360px;max-width:92vw;text-align:center;">
     <p class="login-eyebrow">Interní materiál</p>
     <h1 class="login-title">Nápady <em>101</em></h1>
     <p class="login-sub">Martin Mareš · Kreativní techniky & Stimul otázky</p>
     <div class="login-input-wrap">
-      <input type="password" id="pwd-input" placeholder="Zadejte heslo…" autocomplete="off">
+      <input type="password" id="pwd-input" placeholder="Zadejte heslo…" autocomplete="off" style="width:100%;box-sizing:border-box;">
     </div>
-    <button class="login-btn" onclick="tryLogin()">Vstoupit →</button>
+    <button class="login-btn" onclick="tryLogin()" style="width:100%;box-sizing:border-box;">Vstoupit →</button>
     <p class="login-error" id="login-error"></p>
   </div>
 </div>
@@ -186,7 +197,7 @@
 <div id="site">
 
   <nav>
-    <div class="nav-logo">Nápady <span>101</span></div>
+    <div class="nav-logo" style="font-family:'Barlow Condensed',sans-serif; font-weight:900; font-size:20px; letter-spacing:-0.01em;">NÁPADY <span style="color:var(--accent);">101</span></div>
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="showTab('techniky', this)">Techniky</button>
       <button class="nav-tab" onclick="showTab('otazky', this)">Stimul otázky</button>
@@ -222,8 +233,8 @@
     <div class="section">
 
       <div class="fact-banner">
-        <div class="fact-quote">"Creativity is the last unfair advantage."</div>
-        <div class="fact-source">— Bill Bernbach · Zdroj: WARC</div>
+        <div class="fact-quote" style="color:#ffffff;">"Creativity is the last unfair advantage."</div>
+        <div class="fact-source" style="color:rgba(255,255,255,0.7);">— Bill Bernbach · Zdroj: WARC</div>
       </div>
 
       <div class="section-header">
@@ -448,7 +459,7 @@
       </div>
 
       <div class="fact-banner" style="margin-top:48px; margin-bottom:0;">
-        <div class="fact-quote">Kreativita je nejúčinnější, pokud je výrazná, emotivní, neotřelá, dobře propaguje značku a má dlouhou životnost.</div>
+        <div class="fact-quote" style="color:#ffffff;">Kreativita je nejúčinnější, pokud je výrazná, emotivní, neotřelá, dobře propaguje značku a má dlouhou životnost.</div>
       </div>
 
     </div>
@@ -461,7 +472,7 @@
         <span class="section-num">01 – 17</span>
         <h2 class="section-title">Stimul otázky</h2>
       </div>
-      <p style="color:#888; font-size:14px; margin-bottom:40px; font-weight:300; line-height:1.6;">Ptej se jich u každého briefu. Každá otázka má vedle sebe příklad z praxe.</p>
+      <p style="color:var(--muted); font-size:14px; margin-bottom:40px; font-weight:300; line-height:1.6;">Ptej se jich u každého briefu. Každá otázka má vedle sebe příklad z praxe.</p>
 
       <div class="item">
         <div class="item-info">
@@ -728,8 +739,8 @@
   </div>
 
   <footer>
-    <span class="footer-text">© Interní materiál · Nešíři mimo tým</span>
-    <span class="footer-author">Autor: <strong>Martin Mareš</strong> · Nápady 101</span>
+    <span class="footer-text" style="color:#fff; font-weight:700; font-size:14px; font-family:'Barlow Condensed',sans-serif; letter-spacing:0.05em;">MARK<span style="background:#fff;color:var(--accent);padding:0 4px;border-radius:2px;">BBDO</span></span>
+    <span class="footer-author" style="color:rgba(255,255,255,0.8);">Autor: <strong>Martin Mareš</strong> · Nápady 101</span>
   </footer>
 
 </div>
