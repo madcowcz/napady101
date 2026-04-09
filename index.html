@@ -9,7 +9,6 @@
   :root {
     --bg: #0d0d0d;
     --surface: #161616;
-    --surface2: #1e1e1e;
     --border: #2a2a2a;
     --accent: #e8c547;
     --accent2: #c4382a;
@@ -17,533 +16,160 @@
     --muted: #888;
     --card-bg: #141414;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-  }
-
-  /* ─── LOGIN SCREEN ─── */
+  /* LOGIN */
   #login-screen {
-    position: fixed; inset: 0;
-    background: var(--bg);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 9999;
-    flex-direction: column;
-    gap: 0;
+    position: fixed; inset: 0; background: var(--bg);
+    display: flex; align-items: center; justify-content: center; z-index: 9999;
   }
-
-  .login-box {
-    width: min(420px, 92vw);
-    text-align: center;
-  }
-
-  .login-eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-  }
-
-  .login-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 6px;
-  }
-
-  .login-title em {
-    color: var(--accent);
-    font-style: italic;
-  }
-
-  .login-sub {
-    font-size: 13px;
-    color: var(--muted);
-    margin-bottom: 40px;
-    font-weight: 300;
-    letter-spacing: 0.02em;
-  }
-
-  .login-input-wrap {
-    position: relative;
-    margin-bottom: 14px;
-  }
-
+  .login-box { width: min(420px, 92vw); text-align: center; }
+  .login-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+  .login-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 900; line-height: 1.05; margin-bottom: 6px; }
+  .login-title em { color: var(--accent); font-style: italic; }
+  .login-sub { font-size: 13px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
+  .login-input-wrap { margin-bottom: 14px; }
   .login-input-wrap input {
-    width: 100%;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    padding: 16px 20px;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.2s;
-    letter-spacing: 0.05em;
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 15px;
+    padding: 16px 20px; border-radius: 4px; outline: none; transition: border-color 0.2s; letter-spacing: 0.05em;
   }
-
-  .login-input-wrap input:focus {
-    border-color: var(--accent);
-  }
-
+  .login-input-wrap input:focus { border-color: var(--accent); }
   .login-btn {
-    width: 100%;
-    background: var(--accent);
-    color: #0d0d0d;
-    border: none;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: opacity 0.2s, transform 0.1s;
+    width: 100%; background: var(--accent); color: #0d0d0d; border: none;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase; padding: 16px; border-radius: 4px;
+    cursor: pointer; transition: opacity 0.2s;
   }
-
   .login-btn:hover { opacity: 0.88; }
-  .login-btn:active { transform: scale(0.99); }
+  .login-error { color: var(--accent2); font-size: 12px; margin-top: 10px; min-height: 16px; }
 
-  .login-error {
-    color: var(--accent2);
-    font-size: 12px;
-    margin-top: 10px;
-    min-height: 16px;
-    letter-spacing: 0.03em;
-  }
-
-  .login-deco {
-    position: absolute;
-    width: 300px; height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(232,197,71,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .login-deco.top { top: -80px; left: -80px; }
-  .login-deco.bot { bottom: -80px; right: -80px; }
-
-  /* ─── MAIN SITE ─── */
+  /* SITE */
   #site { display: none; }
 
   /* NAV */
   nav {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(13,13,13,0.92);
-    backdrop-filter: blur(12px);
+    background: rgba(13,13,13,0.94); backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 60px;
+    padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 60px;
   }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-  }
-
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; }
   .nav-logo span { color: var(--accent); }
-
-  .nav-tabs {
-    display: flex; gap: 4px;
-  }
-
+  .nav-tabs { display: flex; gap: 4px; }
   .nav-tab {
-    background: none; border: none;
-    color: var(--muted);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 8px 16px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: color 0.2s, background 0.2s;
+    background: none; border: none; color: var(--muted);
+    font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 8px 16px;
+    border-radius: 3px; cursor: pointer; transition: color 0.2s, background 0.2s;
   }
-
   .nav-tab:hover { color: var(--text); background: var(--surface); }
   .nav-tab.active { color: var(--accent); background: rgba(232,197,71,0.08); }
 
   /* HERO */
   .hero {
-    padding: 80px 32px 60px;
-    max-width: 1100px;
-    margin: 0 auto;
+    padding: 72px 32px 56px; max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end;
+  }
+  .hero-label { font-size: 11px; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; margin-bottom: 20px; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-desc { font-size: 15px; color: #aaa; line-height: 1.7; font-weight: 300; }
+  .hero-stats { display: flex; flex-direction: column; gap: 28px; }
+  .hero-stat { border-left: 2px solid var(--accent); padding-left: 20px; }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; line-height: 1; }
+  .hero-stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .section-divider { height: 1px; background: var(--border); margin: 0 32px; }
+
+  .section { padding: 64px 32px; max-width: 1100px; margin: 0 auto; }
+  .section-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 48px; }
+  .section-num { font-family: 'Playfair Display', serif; font-size: 0.9rem; color: var(--accent); letter-spacing: 0.1em; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; }
+
+  .fact-banner {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 32px 40px; margin-bottom: 48px;
+    display: flex; gap: 40px; align-items: center; flex-wrap: wrap;
+  }
+  .fact-quote { font-family: 'Playfair Display', serif; font-size: clamp(1.2rem, 2.2vw, 1.6rem); font-style: italic; flex: 1; min-width: 240px; line-height: 1.45; }
+  .fact-source { font-size: 12px; color: var(--muted); white-space: nowrap; }
+
+  /* TECHNIQUE / QUESTION ITEM — two-column card */
+  .item {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: end;
-  }
-
-  @media (max-width: 700px) {
-    .hero { grid-template-columns: 1fr; padding: 48px 20px 32px; }
-    nav { padding: 0 16px; }
-    .nav-tabs { gap: 2px; }
-    .nav-tab { padding: 8px 10px; font-size: 11px; }
-  }
-
-  .hero-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 20px;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--accent);
-  }
-
-  .hero-desc {
-    font-size: 15px;
-    color: #aaa;
-    line-height: 1.7;
-    font-weight: 300;
-    max-width: 440px;
-  }
-
-  .hero-stats {
-    display: flex; flex-direction: column; gap: 28px;
-    padding-bottom: 8px;
-  }
-
-  .hero-stat {
-    border-left: 2px solid var(--accent);
-    padding-left: 20px;
-  }
-
-  .hero-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    font-weight: 900;
-    line-height: 1;
-    color: var(--text);
-  }
-
-  .hero-stat-label {
-    font-size: 12px;
-    color: var(--muted);
-    margin-top: 4px;
-    letter-spacing: 0.05em;
-  }
-
-  /* DIVIDER */
-  .section-divider {
-    height: 1px;
-    background: var(--border);
-    margin: 0 32px;
-  }
-
-  /* SECTION */
-  .section {
-    padding: 64px 32px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  @media (max-width: 700px) {
-    .section { padding: 40px 20px; }
-  }
-
-  .section-header {
-    display: flex; align-items: baseline; gap: 16px;
-    margin-bottom: 40px;
-  }
-
-  .section-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    color: var(--accent);
-    font-weight: 400;
-    letter-spacing: 0.1em;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
-    font-weight: 700;
-  }
-
-  /* CARDS GRID */
-  .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1px;
-    background: var(--border);
     border: 1px solid var(--border);
-    border-radius: 6px;
+    border-radius: 8px;
     overflow: hidden;
-  }
-
-  .card {
+    margin-bottom: 24px;
     background: var(--card-bg);
-    padding: 28px;
-    transition: background 0.2s;
-    cursor: default;
-    position: relative;
-    overflow: hidden;
+    transition: border-color 0.25s;
   }
+  .item:hover { border-color: rgba(232,197,71,0.35); }
 
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
+  .item-info {
+    padding: 36px;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--border);
   }
-
-  .card:hover { background: var(--surface); }
-  .card:hover::before { transform: scaleX(1); }
-
-  .card-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
-    font-weight: 900;
-    color: rgba(232,197,71,0.15);
-    line-height: 1;
-    margin-bottom: 12px;
-    transition: color 0.2s;
+  .item-num {
+    font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900;
+    color: rgba(232,197,71,0.1); line-height: 1; margin-bottom: 14px;
   }
+  .item-label { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .item-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
+  .item-desc { font-size: 13.5px; color: #999; line-height: 1.7; font-weight: 300; }
+  .item-question { font-size: 13.5px; color: #aaa; line-height: 1.65; font-style: italic; font-weight: 300; }
 
-  .card:hover .card-num { color: rgba(232,197,71,0.3); }
+  .item-example { background: #000; display: flex; flex-direction: column; }
 
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    line-height: 1.3;
-  }
+  .video-embed { position: relative; padding-bottom: 56.25%; height: 0; }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-  .card-desc {
-    font-size: 13px;
-    color: #999;
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
-  /* VIDEO GRID */
-  .videos-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-  }
-
-  .video-card {
+  .example-caption {
+    padding: 14px 18px;
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-    transition: border-color 0.2s, transform 0.2s;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
   }
-
-  .video-card:hover {
-    border-color: rgba(232,197,71,0.4);
-    transform: translateY(-2px);
+  .example-tag {
+    display: inline-block; font-size: 10px; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); background: rgba(232,197,71,0.1);
+    padding: 2px 7px; border-radius: 2px; margin-bottom: 5px;
   }
+  .example-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .example-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
 
-  .video-embed {
-    position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
-    background: #000;
-  }
-
-  .video-embed iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
-
-  .video-info {
-    padding: 16px 20px;
-  }
-
-  .video-tag {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    background: rgba(232,197,71,0.1);
-    padding: 3px 8px;
-    border-radius: 2px;
-    margin-bottom: 8px;
-  }
-
-  .video-title {
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 1.4;
-    color: var(--text);
-  }
-
-  /* QUESTIONS SECTION */
-  .questions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-
-  .q-card {
-    background: var(--card-bg);
-    padding: 24px 28px;
-    transition: background 0.2s;
-  }
-
-  .q-card:hover { background: var(--surface); }
-
-  .q-num {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 10px;
-  }
-
-  .q-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-  }
-
-  .q-text {
-    font-size: 13px;
-    color: #888;
-    line-height: 1.6;
-    font-style: italic;
-    font-weight: 300;
-  }
-
-  /* FACT BANNER */
-  .fact-banner {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 40px 48px;
-    margin-bottom: 40px;
-    display: flex; gap: 40px; align-items: center;
-    flex-wrap: wrap;
-  }
-
-  .fact-quote {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-    font-weight: 400;
-    font-style: italic;
-    flex: 1;
-    min-width: 240px;
-    line-height: 1.45;
-    color: var(--text);
-  }
-
-  .fact-source {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    white-space: nowrap;
-  }
-
-  /* TAB PANELS */
+  /* TAB */
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
   /* FOOTER */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 24px 32px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 12px;
-  }
-
-  .footer-text {
-    font-size: 12px;
-    color: var(--muted);
-    letter-spacing: 0.04em;
-  }
-
-  .footer-author {
-    font-size: 12px;
-    color: var(--muted);
-  }
-
+  footer { border-top: 1px solid var(--border); padding: 24px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  .footer-text { font-size: 12px; color: var(--muted); }
+  .footer-author { font-size: 12px; color: var(--muted); }
   .footer-author strong { color: var(--text); }
 
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .hero { grid-template-columns: 1fr; padding: 48px 20px 32px; }
+    nav { padding: 0 16px; }
+    .nav-tab { padding: 8px 10px; font-size: 11px; }
+    .section { padding: 40px 20px; }
+    .item { grid-template-columns: 1fr; }
+    .item-info { border-right: none; border-bottom: 1px solid var(--border); }
   }
 
-  .card, .video-card, .q-card {
-    animation: fadeUp 0.4s ease both;
-  }
-
-  .cards-grid .card:nth-child(1)  { animation-delay: 0.02s; }
-  .cards-grid .card:nth-child(2)  { animation-delay: 0.06s; }
-  .cards-grid .card:nth-child(3)  { animation-delay: 0.10s; }
-  .cards-grid .card:nth-child(4)  { animation-delay: 0.14s; }
-  .cards-grid .card:nth-child(5)  { animation-delay: 0.18s; }
-  .cards-grid .card:nth-child(6)  { animation-delay: 0.22s; }
-  .cards-grid .card:nth-child(7)  { animation-delay: 0.26s; }
-  .cards-grid .card:nth-child(8)  { animation-delay: 0.30s; }
-  .cards-grid .card:nth-child(9)  { animation-delay: 0.34s; }
-  .cards-grid .card:nth-child(10) { animation-delay: 0.38s; }
-  .cards-grid .card:nth-child(11) { animation-delay: 0.42s; }
-  .cards-grid .card:nth-child(12) { animation-delay: 0.46s; }
-
-  /* Noise texture */
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    pointer-events: none;
-    z-index: 9998;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .item { animation: fadeUp 0.35s ease both; }
 </style>
 </head>
 <body>
 
-<!-- ─── LOGIN ─── -->
+<!-- LOGIN -->
 <div id="login-screen">
-  <div class="login-deco top"></div>
-  <div class="login-deco bot"></div>
   <div class="login-box">
     <p class="login-eyebrow">Interní materiál</p>
     <h1 class="login-title">Nápady <em>101</em></h1>
@@ -556,46 +182,45 @@
   </div>
 </div>
 
-<!-- ─── SITE ─── -->
+<!-- SITE -->
 <div id="site">
 
   <nav>
     <div class="nav-logo">Nápady <span>101</span></div>
     <div class="nav-tabs">
       <button class="nav-tab active" onclick="showTab('techniky', this)">Techniky</button>
-      <button class="nav-tab" onclick="showTab('videa', this)">Videa</button>
-      <button class="nav-tab" onclick="showTab('otazky', this)">Otázky</button>
+      <button class="nav-tab" onclick="showTab('otazky', this)">Stimul otázky</button>
     </div>
   </nav>
 
-  <!-- HERO -->
   <div class="hero">
     <div>
       <p class="hero-label">Martin Mareš · Kreativní vzdělávání</p>
       <h1 class="hero-title">Kde se <em>berou</em> nápady?</h1>
-      <p class="hero-desc">Kreativita není blesk z čistého nebe — je to systematický proces. Tato příručka shrnuje 12 kreativních technik a 17 stimul otázek, které ti pomůžou nápad najít.</p>
+      <p class="hero-desc">Kreativita není blesk z čistého nebe — je to systematický proces. 12 technik a 17 stimul otázek, každá s konkrétním příkladem z praxe.</p>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-num">×20</div>
-        <div class="hero-stat-label">Největší multiplikátor ROI v reklamě je kreativita</div>
+        <div class="hero-stat-label">Největší multiplikátor ROI v reklamě je kreativita (WARC)</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">12</div>
-        <div class="hero-stat-label">Kreativních technik</div>
+        <div class="hero-stat-label">Kreativních technik s příklady</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-num">17</div>
-        <div class="hero-stat-label">Stimul otázek</div>
+        <div class="hero-stat-label">Stimul otázek s příklady</div>
       </div>
     </div>
   </div>
 
   <div class="section-divider"></div>
 
-  <!-- ─── TAB: TECHNIKY ─── -->
+  <!-- ═══ TECHNIKY ═══ -->
   <div id="tab-techniky" class="tab-panel active">
     <div class="section">
+
       <div class="fact-banner">
         <div class="fact-quote">"Creativity is the last unfair advantage."</div>
         <div class="fact-source">— Bill Bernbach · Zdroj: WARC</div>
@@ -606,288 +231,442 @@
         <h2 class="section-title">Kreativní techniky</h2>
       </div>
 
-      <div class="cards-grid">
-        <div class="card">
-          <div class="card-num">01</div>
-          <div class="card-title">Fakta & Demo</div>
-          <div class="card-desc">Zajímavě vizualizuj nebo popiš produkt a jeho benefit. Použij inovativní testovací metodu, nebo porovnej přímo s konkurencí.</div>
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">01</div>
+          <div class="item-title">Fakta & Demo</div>
+          <div class="item-desc">Zajímavě vizualizuj nebo popiš produkt a jeho benefit. Použij inovativní testovací metodu, nebo porovnej přímo s konkurencí. Nejjednodušší, ale často nejpřesvědčivější.</div>
         </div>
-        <div class="card">
-          <div class="card-num">02</div>
-          <div class="card-title">Potřeba / Problém</div>
-          <div class="card-desc">Problémy jsou často zajímavější než řešení. Soustřeď se na problém, který produkt řeší — řešení si nech jako odpověď na konec.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">03</div>
-          <div class="card-title">Příběh porovnání</div>
-          <div class="card-desc">Vytáhnout se před ostatními je vděčné téma. Ukaž, co náš produkt dokáže a jiný nikoli — nebo předveď porovnání v rovině "tohle my nejsme".</div>
-        </div>
-        <div class="card">
-          <div class="card-num">04</div>
-          <div class="card-title">Benefit je pointa</div>
-          <div class="card-desc">Vyprávěj příběh o tom, co všechno se může stát, pokud využiješ benefit. Ve výsledném efektu může jít o přehnaně doslovné demo.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">05</div>
-          <div class="card-title">Mluvčí / Testimonial</div>
-          <div class="card-desc">Pokud bude prezentace produktu chytrá a charizmatická, jde o jeden z nejjednodušších způsobů, jak předat zprávu. Pozor na klišé!</div>
-        </div>
-        <div class="card">
-          <div class="card-num">06</div>
-          <div class="card-title">Analogie</div>
-          <div class="card-desc">Proměň svůj produkt v metaforu, které už všichni rozumí — i když ji konkurence nazývá zjednodušením.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">07</div>
-          <div class="card-title">Unikátní charakter</div>
-          <div class="card-desc">Má produkt opravdu nevšední původ či výrobní postup? Jedineční hrdinové, výrobci a místa budují silný příběh značky.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">08</div>
-          <div class="card-title">Půjčeno / Parodie</div>
-          <div class="card-desc">Použij dostatečně známý kulturní kontext pro vysvětlení benefitu — film, literatura, hudba. Parodie pracuje s tím, co je v hlavách lidí.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">09</div>
-          <div class="card-title">Produkt "navíc"</div>
-          <div class="card-desc">Neprodávej jeden produkt, prodávej ekosystém a životní styl. Vymýšlej tam, kde je to třeba.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">10</div>
-          <div class="card-title">Divnost</div>
-          <div class="card-desc">Odhal nezvyklou zvláštnost a udělej z ní svou bojovou vlajku v moři stejnosti. Získáš loajalitu.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">11</div>
-          <div class="card-title">Úmyslné zkažení</div>
-          <div class="card-desc">Záměrně odstraň nebo omez prvky, které většina značek chrání, a demonstruj hodnoty skrze obětování. Okamžitě vysvětli proč.</div>
-        </div>
-        <div class="card">
-          <div class="card-num">12</div>
-          <div class="card-title">Hijack the Medium</div>
-          <div class="card-desc">Média chtějí příběhy — dej jim takový, který je příliš dobrý na to, aby se dal ignorovat. Využij kontext samotného média.</div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/ZPHpMeMnBj0" loading="lazy" allowfullscreen title="VW Snow Plow"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Volkswagen — Snow Plow (1964)</div>
+            <div class="example-sub">Cannes Gold · NY ADC Gold</div>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="section-divider"></div>
-
-    <div class="section">
-      <div class="section-header">
-        <span class="section-num">Závěr</span>
-        <h2 class="section-title">Pamatuj</h2>
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">02</div>
+          <div class="item-title">Potřeba / Problém</div>
+          <div class="item-desc">Problémy jsou často zajímavější než řešení. Soustřeď se na problém, který produkt řeší — řešení si nech jako odpověď až na konec.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/Ap5NEbvzQOM" loading="lazy" allowfullscreen title="Vim Prisoner"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Vim — Prisoner (2004)</div>
+            <div class="example-sub">Cannes Gold · Agency: Zig, Canada</div>
+          </div>
+        </div>
       </div>
-      <div class="fact-banner">
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">03</div>
+          <div class="item-title">Příběh porovnání</div>
+          <div class="item-desc">Vytáhnout se před ostatními je vděčné téma. Ukaž, co náš produkt dokáže a jiný nikoli — nebo předveď porovnání v rovině "tohle my nejsme".</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/nXSCHDcFPEA" loading="lazy" allowfullscreen title="Aldi Tea"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Aldi — "I buy this tea for my husband" (2011)</div>
+            <div class="example-sub">Nejoblíbenější britská reklama 2012</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">04</div>
+          <div class="item-title">Benefit je pointa</div>
+          <div class="item-desc">Vyprávěj příběh o tom, co všechno se může stát, pokud využiješ benefit. Výsledkem může být přehnaně doslovné demo, které diváka překvapí.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/0-n2c86PFRg" loading="lazy" allowfullscreen title="Olympus Zoom"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Olympus — 10× Optical Zoom</div>
+            <div class="example-sub">Benefit jako pointa celého příběhu</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">05</div>
+          <div class="item-title">Mluvčí / Testimonial</div>
+          <div class="item-desc">Pokud je prezentace produktu chytrá a charizmatická, jde o jeden z nejjednodušších způsobů, jak předat zprávu. Pozor — banální provedení lehce sklouzne ke klišé.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/0hFy2q0C8Qo" loading="lazy" allowfullscreen title="Tide Super Bowl"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Tide — It's a Tide Ad (Super Bowl 2018)</div>
+            <div class="example-sub">Cannes Film Grand Prix · Saatchi & Saatchi NY</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">06</div>
+          <div class="item-title">Analogie</div>
+          <div class="item-desc">Proměň svůj produkt v metaforu, které už všichni rozumí — i když ji konkurence nazývá zjednodušením. Dobře zvolená analogie zkrátí cestu k pochopení.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/XHZQXSdmXEM" loading="lazy" allowfullscreen title="Uber Boxes"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Uber — Boxes (Unlock Cities)</div>
+            <div class="example-sub">Krabice = auta · Analogie v akci</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">07</div>
+          <div class="item-title">Unikátní charakter</div>
+          <div class="item-desc">Má produkt nevšední původ nebo výrobní postup? Jedineční hrdinové, výrobci a místa budují silný příběh značky, který konkurence nemůže zkopírovat.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/J9U7FJnFQpM" loading="lazy" allowfullscreen title="Malibu Bus"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Malibu — Bus</div>
+            <div class="example-sub">Dir: Ulf Johansson · Lowe Lintas London</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">08</div>
+          <div class="item-title">Půjčeno / Parodie</div>
+          <div class="item-desc">Použij dostatečně známý kulturní kontext pro vysvětlení benefitu — film, literatura, hudba. Parodie pracuje s tím, co je v hlavách lidí.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/mGENRKrdoGY" loading="lazy" allowfullscreen title="Uber Trains"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Uber — Trains, now on Uber</div>
+            <div class="example-sub">Půjčená estetika železniční reklamy</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">09</div>
+          <div class="item-title">Produkt "navíc"</div>
+          <div class="item-desc">Neprodávej jeden produkt, prodávej ekosystém a životní styl. Vymýšlej tam, kde je to třeba — přidaná hodnota nad rámec produktu.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/B0AKB3QDYJE" loading="lazy" allowfullscreen title="Lidl Lidlize"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Lidl — Lidlize (Case Study)</div>
+            <div class="example-sub">Agency: Marcel Paris · 60M+ impresí</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">10</div>
+          <div class="item-title">Divnost</div>
+          <div class="item-desc">Odhal nezvyklou zvláštnost a udělej z ní svou bojovou vlajku v moři stejnosti. Neobvyklé si lidé pamatují — a pamatují si i značku.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/FxbpH4hvpe4" loading="lazy" allowfullscreen title="Kenzo World"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Kenzo World — New Fragrance</div>
+            <div class="example-sub">Dir: Spike Jonze · Záměrná bizarnost jako identita</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">11</div>
+          <div class="item-title">Úmyslné zkažení</div>
+          <div class="item-desc">Záměrně odstraň nebo omez prvky, které většina značek chrání, a demonstruj hodnoty skrze obětování. Okamžitě vysvětli proč — jinak to nevychází.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/VVymCq8aIr8" loading="lazy" allowfullscreen title="Patagonia Don't Buy"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Patagonia — Don't Buy This Jacket</div>
+            <div class="example-sub">Ikonická kampaň úmyslného omezení</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-num">12</div>
+          <div class="item-title">Hijack the Medium</div>
+          <div class="item-desc">Média chtějí příběhy — dej jim takový, který je příliš dobrý na to, aby se dal ignorovat. Využij kontext, formát nebo konvence samotného média jako součást sdělení.</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/0hFy2q0C8Qo" loading="lazy" allowfullscreen title="Tide Hijack Medium"></iframe>
+          </div>
+          <div class="example-caption">
+            <span class="example-tag">Ukázka</span>
+            <div class="example-title">Tide — Hijack Super Bowl (2018)</div>
+            <div class="example-sub">Únos celého reklamního bloku jako mediální trik</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fact-banner" style="margin-top:48px; margin-bottom:0;">
         <div class="fact-quote">Kreativita je nejúčinnější, pokud je výrazná, emotivní, neotřelá, dobře propaguje značku a má dlouhou životnost.</div>
       </div>
+
     </div>
   </div>
 
-  <!-- ─── TAB: VIDEA ─── -->
-  <div id="tab-videa" class="tab-panel">
-    <div class="section">
-      <div class="section-header">
-        <span class="section-num">Ukázky</span>
-        <h2 class="section-title">Reklamní videa</h2>
-      </div>
-      <p style="color:#888; font-size:14px; margin-bottom:32px; font-weight:300;">Příklady z prezentace — klikni pro spuštění přímo zde.</p>
-
-      <div class="videos-grid">
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/search?q=Volkswagen+Snow+Plow+1964+commercial" loading="lazy" allowfullscreen
-              title="VW Snow Plow 1964"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Fakta & Demo</span>
-            <div class="video-title">Volkswagen — Snow Plow (1964)<br><span style="color:#666; font-size:12px;">Cannes Gold · NY ADC Gold</span></div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/Ap5NEbvzQOM" loading="lazy" allowfullscreen
-              title="Aldi Tea ad 2011"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Porovnání</span>
-            <div class="video-title">Aldi — "I buy this tea for my husband" (2011)<br><span style="color:#666; font-size:12px;">Nejoblíbenější britská reklama 2012</span></div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/unlock-uber-boxes" loading="lazy" allowfullscreen
-              title="Uber Boxes"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Analogie</span>
-            <div class="video-title">Uber — Boxes (Unlock Cities)</div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/mGENRKrdoGY" loading="lazy" allowfullscreen
-              title="Uber Trains"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Půjčeno / Parodie</span>
-            <div class="video-title">Uber — Trains, now on Uber</div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/FxbpH4hvpe4" loading="lazy" allowfullscreen
-              title="Kenzo World"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Divnost</span>
-            <div class="video-title">Kenzo World — New Fragrance</div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/0hFy2q0C8Qo" loading="lazy" allowfullscreen
-              title="Tide Super Bowl"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Hijack the Medium</span>
-            <div class="video-title">Tide — It's a Tide Ad (Super Bowl)<br><span style="color:#666; font-size:12px;">Cannes Film Grand Prix · Saatchi & Saatchi</span></div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/search?q=Malibu+Bus+ad+Ulf+Johansson" loading="lazy" allowfullscreen
-              title="Malibu Bus"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Unikátní charakter</span>
-            <div class="video-title">Malibu — Bus<br><span style="color:#666; font-size:12px;">Dir: Ulf Johansson · Lowe Lintas London</span></div>
-          </div>
-        </div>
-
-        <div class="video-card">
-          <div class="video-embed">
-            <iframe src="https://www.youtube.com/embed/search?q=KFC+Thailand+Uncle+KFC+Wolf+BKK" loading="lazy" allowfullscreen
-              title="KFC Thailand Uncle KFC"></iframe>
-          </div>
-          <div class="video-info">
-            <span class="video-tag">Zvětšete malé</span>
-            <div class="video-title">KFC Thailand — Uncle KFC<br><span style="color:#666; font-size:12px;">Agency: Wolf BKK</span></div>
-          </div>
-        </div>
-
-      </div>
-
-      <div style="margin-top: 24px; padding: 16px 20px; background: var(--surface); border-radius: 4px; border: 1px solid var(--border);">
-        <p style="font-size: 13px; color: var(--muted); line-height: 1.6;">
-          <strong style="color: var(--text);">Tip:</strong> Pokud se video nespustí přímo, klikni na název videa ve widgetu — otevře se na YouTube. Videa jsou uložena na externích platformách a vyžadují připojení k internetu.
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ─── TAB: OTÁZKY ─── -->
+  <!-- ═══ OTÁZKY ═══ -->
   <div id="tab-otazky" class="tab-panel">
     <div class="section">
       <div class="section-header">
         <span class="section-num">01 – 17</span>
         <h2 class="section-title">Stimul otázky</h2>
       </div>
-      <p style="color:#888; font-size:14px; margin-bottom:32px; font-weight:300;">Otázky, které tě nakopnou správným směrem. Ptej se jich u každého briefu.</p>
+      <p style="color:#888; font-size:14px; margin-bottom:40px; font-weight:300; line-height:1.6;">Ptej se jich u každého briefu. Každá otázka má vedle sebe příklad z praxe.</p>
 
-      <div class="questions-grid">
-        <div class="q-card">
-          <div class="q-num">Otázka 01 · Beze slov</div>
-          <div class="q-name">Obrázek za tisíc slov</div>
-          <div class="q-text">Jak můžeme shrnout benefit jednoduchým obrázkem?</div>
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 01 · Beze slov</div>
+          <div class="item-title">Obrázek za tisíc slov</div>
+          <div class="item-question">Jak můžeme shrnout benefit jednoduchým obrázkem?</div>
         </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 02 · Beze slov</div>
-          <div class="q-name">Skrytý příběh</div>
-          <div class="q-text">Jak může vizuál říct příběh, který je divákovi skrytý?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 03 · Beze slov</div>
-          <div class="q-name">Benefit bez produktu</div>
-          <div class="q-text">Jak může být benefit vykreslen bez toho, abychom produkt vůbec ukázali?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 04 · Mixing & Matching</div>
-          <div class="q-name">Asociace předností</div>
-          <div class="q-text">Co může být spojováno s přednostmi produktu?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 05 · Srovnávání</div>
-          <div class="q-name">Medium vs. benefit</div>
-          <div class="q-text">Jak využít medium v porovnání s naší komunikací benefitu?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 06 · Přehánění</div>
-          <div class="q-name">Přehnaný benefit</div>
-          <div class="q-text">Jak můžeme přehnat benefit v náznaku?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 07 · Přehánění</div>
-          <div class="q-name">Slova zbytečná</div>
-          <div class="q-text">Jak můžeme přehnat efekt použití produktu tak, aby slova byla zbytečná?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 08 · Otočit</div>
-          <div class="q-name">Opak běžného vnímání</div>
-          <div class="q-text">Jak ukážeme benefit v přesném opaku, než je běžné vnímání?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 09 · Paradox</div>
-          <div class="q-name">Paradox produktu</div>
-          <div class="q-text">Jak paradox vyzdvihne benefit produktu nebo služby?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 10 · Provokace</div>
-          <div class="q-name">Porušení tabu</div>
-          <div class="q-text">Jak můžeme porušit tabu nebo provokovat cílovou skupinu?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 11 · Perspektiva</div>
-          <div class="q-name">Jiný pohled</div>
-          <div class="q-text">Může být produkt ukázán z pohledu někoho jiného — zvířat, věcí nebo událostí spojovaných s benefitem?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 12 · Mystifikace</div>
-          <div class="q-name">Parodie v příběhu</div>
-          <div class="q-text">Jak může parodie pomoci dodat zábavnou formu příběhu produktu?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 13 · Symboly</div>
-          <div class="q-name">Silné symboly</div>
-          <div class="q-text">Existují symboly, které pomohou lépe komunikovat zprávu nebo demonstrují benefit?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 14 · Hravost</div>
-          <div class="q-name">Pozvánka ke hře</div>
-          <div class="q-text">Jak může pozvánka ke hře zvýraznit pozornost na produkt?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 15 · Vyprávění</div>
-          <div class="q-name">Životní situace</div>
-          <div class="q-text">Jakou každodenní nebo provokativní životní situaci ukážeme, aby stál produkt v centru pozornosti?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 16 · Absurdno</div>
-          <div class="q-name">Klišé v absurditě</div>
-          <div class="q-text">Jaké klišé může být ukázáno v jeho absurdní podobě, tak aby stál produkt v centru pozornosti?</div>
-        </div>
-        <div class="q-card">
-          <div class="q-num">Otázka 17 · Doslovnost</div>
-          <div class="q-name">Vizuální překlad slov</div>
-          <div class="q-text">Jaká slova nebo fráze spojená s produktem mohou být přeloženy doslovně v obrázek?</div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/ZPHpMeMnBj0" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">VW Snow Plow — jeden záběr říká vše</div></div>
         </div>
       </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 02 · Beze slov</div>
+          <div class="item-title">Skrytý příběh</div>
+          <div class="item-question">Jak může vizuál říct příběh, který je divákovi skrytý?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ap5NEbvzQOM" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Vim — divák zjistí pravdu až na konci</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 03 · Beze slov</div>
+          <div class="item-title">Benefit bez produktu</div>
+          <div class="item-question">Jak může být benefit vykreslen bez toho, abychom produkt vůbec ukázali?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/XHZQXSdmXEM" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Uber Boxes — žádné auto, jen metafora</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 04 · Mixing & Matching</div>
+          <div class="item-title">Asociace předností</div>
+          <div class="item-question">Co může být spojováno s přednostmi produktu?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/FxbpH4hvpe4" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Kenzo — svoboda a vůně propojeny</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 05 · Srovnávání</div>
+          <div class="item-title">Medium vs. benefit</div>
+          <div class="item-question">Jak využít medium v porovnání s naší komunikací benefitu?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/0hFy2q0C8Qo" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Tide — Super Bowl jako součást sdělení</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 06 · Přehánění</div>
+          <div class="item-title">Přehnaný benefit</div>
+          <div class="item-question">Jak můžeme přehnat benefit v náznaku?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/0-n2c86PFRg" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Olympus — přehnaný zoom jako pointa</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 07 · Přehánění</div>
+          <div class="item-title">Slova zbytečná</div>
+          <div class="item-question">Jak můžeme přehnat efekt použití produktu tak, aby slova byla zbytečná?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/ZPHpMeMnBj0" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">VW — demo mluví samo za sebe</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 08 · Otočit</div>
+          <div class="item-title">Opak běžného vnímání</div>
+          <div class="item-question">Jak ukážeme benefit v přesném opaku, než je běžné vnímání?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/VVymCq8aIr8" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Patagonia — "Don't buy this jacket"</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 09 · Paradox</div>
+          <div class="item-title">Paradox produktu</div>
+          <div class="item-question">Jak paradox vyzdvihne benefit produktu nebo služby?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/nXSCHDcFPEA" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Aldi — levné, ale lepší</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 10 · Provokace</div>
+          <div class="item-title">Porušení tabu</div>
+          <div class="item-question">Jak můžeme porušit tabu nebo provokovat cílovou skupinu?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/Ap5NEbvzQOM" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Vim — pocit uvěznění jako tabu téma</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 11 · Perspektiva</div>
+          <div class="item-title">Jiný pohled</div>
+          <div class="item-question">Může být produkt ukázán z pohledu někoho jiného — zvířat, věcí nebo událostí spojovaných s benefitem?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/XHZQXSdmXEM" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Uber — pohled krabic místo aut</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 12 · Mystifikace</div>
+          <div class="item-title">Parodie v příběhu</div>
+          <div class="item-question">Jak může parodie pomoci dodat zábavnou formu příběhu produktu?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/mGENRKrdoGY" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Uber Trains — parodie na vlakovou reklamu</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 13 · Symboly</div>
+          <div class="item-title">Silné symboly</div>
+          <div class="item-question">Existují symboly, které pomohou lépe komunikovat zprávu nebo demonstrují benefit?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/J9U7FJnFQpM" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Malibu — karibský symbol v šedém Londýně</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 14 · Hravost</div>
+          <div class="item-title">Pozvánka ke hře</div>
+          <div class="item-question">Jak může pozvánka ke hře zvýraznit pozornost na produkt?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/B0AKB3QDYJE" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Lidl — Lidlize, zahraj si s brandem</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 15 · Vyprávění</div>
+          <div class="item-title">Životní situace</div>
+          <div class="item-question">Jakou každodenní nebo provokativní životní situaci ukážeme, aby stál produkt v centru pozornosti?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/nXSCHDcFPEA" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Aldi — každodenní rituál čaje jako příběh</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 16 · Absurdno</div>
+          <div class="item-title">Klišé v absurditě</div>
+          <div class="item-question">Jaké klišé může být ukázáno v jeho absurdní podobě, tak aby stál produkt v centru pozornosti?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/FxbpH4hvpe4" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Kenzo — klišé parfémové reklamy v absurditě</div></div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="item-info">
+          <div class="item-label">Otázka 17 · Doslovnost</div>
+          <div class="item-title">Vizuální překlad slov</div>
+          <div class="item-question">Jaká slova nebo fráze spojená s produktem mohou být přeloženy doslovně v obrázek?</div>
+        </div>
+        <div class="item-example">
+          <div class="video-embed"><iframe src="https://www.youtube.com/embed/mGENRKrdoGY" loading="lazy" allowfullscreen></iframe></div>
+          <div class="example-caption"><span class="example-tag">Příklad</span><div class="example-title">Uber — "trains on Uber" doslovně přeloženo</div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -899,7 +678,6 @@
 </div>
 
 <script>
-  // ─── PASSWORD ───
   const PASSWORD = "napady101";
 
   function tryLogin() {
@@ -920,12 +698,12 @@
     if (e.key === 'Enter') tryLogin();
   });
 
-  // ─── TABS ───
   function showTab(name, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
     btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
